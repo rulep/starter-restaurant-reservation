@@ -1,87 +1,75 @@
-# Capstone: Restaurant Reservation System
+<div align='center'>
+<img src='https://i.imgur.com/abLiXF0.png' width="300">
+</div>
 
-> You have been hired as a full stack developer at _Periodic Tables_, a startup that is creating a reservation system for fine dining restaurants.
-> The software is used only by restaurant personnel when a customer calls to request a reservation.
-> At this point, the customers will not access the system online.
+<br />
 
-There are no user stories for deployment: it is expected that you will deploy the application to production after you finish a user story.
+<!-- TABLE OF CONTENTS -->
+<h2 id="table-of-contents"> :book: Table of Contents</h2>
 
-There are no user stories for logging: it is expected that you will add logging to the application with enough detail to help you diagnose issues in production.
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#about-the-project"> ➤ About The Project</a></li>
+    <li><a href="#prerequisites"> ➤ Prerequisites</a></li>
+    <li><a href="#getting-started"> ➤ Getting Started</a></li>
+    <li><a href="#demo"> ➤ Demo</a></li>
+    <li><a href="#mobile-support"> ➤ Mobile Support</a></li>
+    <li><a href="#api-paths"> ➤ API Documentation</a></li>
+    <li><a href="#running-tests"> ➤ Running Tests</a></li>
+    <li>
+      <a href="#user-stories"> ➤ User Stories</a></li>
+      <ul>
+        <li><a href="#us-01">US-01 Create and list reservations</a></li>
+        <li><a href="#us-02">US-02 Create reservation on a future, working date</a></li>
+        <li><a href="#us-03">US-03 Create reservation within eligible timeframe</a></li>
+          <li><a href="#us-04">US-04 Seat reservation</a></li>
+          <li><a href="#us-05">US-05 Finish an occupied table</a></li>
+          <li><a href="#us-06">US-06 Reservation Status</a></li>
+          <li><a href="#us-07">US-07 Search for a reservation by phone number</a></li>
+          <li><a href="#us-08">US-08 Change an existing reservation</a></li>
+      </ul>
+    </li>
+    <li><a href="#source"> ➤ Source</a></li>
+  </ol>
+</details>
 
-## Existing files
 
-This repository is set up as a *monorepo*, meaning that the frontend and backend projects are in one repository. This allows you to open both projects in the same editor.
+<img src='https://i.imgur.com/DwCJ72P.png'>
 
-As you work through the user stories listed later in this document, you will be writing code that allows your frontend and backend applications to talk to each other. You will also write code to allow your controllers and services to connect to, and query, your PostgreSQL database via [Knex](http://knexjs.org/).
+<!-- ABOUT THE PROJECT -->
+<h2 id="about-the-project"> :pencil: About The Project</h2>
 
-The table below describes the folders in this starter repository:
+<!--
+<p align="justify"> 
+  This application was built as the capstone project for the Thinkful Software Engineering Flex Program. It was designed to be used by restaurant personnel to keep track of reservations and table seating, when a request is made by a customer.
+</p>
+-->
 
-| Folder/file path | Description                                                      |
-| ---------------- | ---------------------------------------------------------------- |
-| `./back-end`     | The backend project, which runs on `localhost:5000` by default.  |
-| `./front-end`    | The frontend project, which runs on `localhost:3000` by default. |
+<table>
+<tr>
+<td>
+    This application was built as the capstone project for the Thinkful Software Engineering Flex Program. It was designed to be used by restaurant personnel to keep track of reservations and table seating, when a request is made by a customer.
+</td>
+</tr>
+</table>
 
-This starter code closely follows the best practices and patterns established in the Robust Server Structure module.
+<img src='https://i.imgur.com/DwCJ72P.png'>
 
-**Note**: Please do not submit a pull request to this repository with your solution.
+<!-- PREREQUISITES -->
+<h2 id="prerequisites"> :fork_and_knife: Prerequisites</h2>
 
-### Backend Existing files
+The following tech stack was used in this project:
+* React
+* Node
+* Express
+* PostgreSQL
+* Knex
 
-The `./back-end` folder contains all the code for the backend project.
+<img src='https://i.imgur.com/DwCJ72P.png'>
 
-The table below describes the existing files in the `./back-end` folder:
-
-| Folder/file path                                         | Description                                                                                                         |
-| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `./back-end/knexfile.js`                                 | The Knex configuration file. You will not need to make changes to this file.                                        |
-| `./back-end/src/app.js`                                  | Defines the Express application and connects routers.                                                               |
-| `./back-end/src/db/connection.js`                        | The Knex connection file. You will not need to make changes to this file.                                           |
-| `./back-end/src/db/migrations`                           | The Knex migrations folder.                                                                                         |
-| `./back-end/src/db/seeds/`                               | The Knex seeds folder.                                                                                              |
-| `./back-end/src/errors/errorHandler.js`                  | Defined an Express API error handler.                                                                               |
-| `./back-end/src/errors/notFound.js`                      | Defined an Express API "not found" handler.                                                                         |
-| `./back-end/src/reservations/reservations.controller.js` | A controller for the reservations resource.                                                                         |
-| `./back-end/src/reservations/reservations.router.js`     | A router for the reservations resource.                                                                             |
-| `./back-end/src/server.js`                               | Defines the node server.                                                                                            |
-| `./back-end/test`                                        | A folder that contains all of the integration tests. You will not need to make changes to the files in this folder. |
-| `./back-end/vercel.json`                                 | A vercel deployment configuration file. You will not need to make changes to this file.                             |
-
-### Frontend Existing files
-
-The `./front-end` folder contains all the code for the frontend project.
-
-The table below describes the existing files in the `./front-end` folder:
-
-| Folder/file path                                   | Description                                                                                            |
-| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `./front-end/e2e`                                  | Contains all of the end-to-end tests. You will not need to make changes to the files in this folder.   |
-| `./front-end/jest-puppeteer.config.js`             | A configuration file used by the end-to-end tests. You will not need to make changes to this file.     |
-| `./front-end/src/App.js`                           | Defines the root application component. You will not need to make changes to this file.                |
-| `./front-end/src/App.test.js`                      | Contains the tests for the root application component. You will not need to make changes to this file. |
-| `./front-end/src/dashboard/Dashboard.js`           | Defines the Dashboard page.                                                                            |
-| `./front-end/src/index.js`                         | The main entry point for the React application.                                                        |
-| `./front-end/src/layout/ErrorAlert.js`             | Defines an error alert component that display only when an error is specified.                         |
-| `./front-end/src/layout/Layout.css`                | The css for the Layout component.                                                                      |
-| `./front-end/src/layout/Layout.js`                 | Defines the main layout of the application.                                                            |
-| `./front-end/src/layout/Menu.js`                   | Defines the menu for the application.                                                                  |
-| `./front-end/src/layout/NotFound.js`               | Defines the "Not found" component that is displayed when no route matches.                             |
-| `./front-end/src/layout/Routes.js`                 | Defines all the routes for the application.                                                            |
-| `./front-end/src/utils/api.js`                     | Defines the functions used to access the backend API                                                   |
-| `./front-end/src/utils/date-time.js`               | Defines functions to format date and time strings.                                                     |
-| `./front-end/src/utils/format-reservation-date.js` | Defines a function to format the date on a single reservation or an array of reservations.             |
-| `./front-end/src/utils/format-reservation-time.js` | Defines a function to format the time on a single reservation or an array of reservations.             |
-| `./front-end/src/utils/useQuery.js`                | Defines a custom hook to parse the query parameters from the URL.                                      |
-
-## Database setup
-
-1. Set up four new ElephantSQL database instances - development, test, preview, and production - by following the instructions in the "PostgreSQL: Creating & Deleting Databases" checkpoint.
-1. After setting up your database instances, connect DBeaver to your new database instances by following the instructions in the "PostgreSQL: Installing DBeaver" checkpoint.
-
-### Knex
-
-Run `npx knex` commands from within the `back-end` folder, which is where the `knexfile.js` file is located.
-
-## Installation
+<!-- GETTING STARTED -->
+<h2 id="getting-started"> :book: Getting Started</h2>
 
 1. Fork and clone this repository.
 1. Run `cp ./back-end/.env.sample ./back-end/.env`.
@@ -91,9 +79,46 @@ Run `npx knex` commands from within the `back-end` folder, which is where the `k
 1. Run `npm install` to install project dependencies.
 1. Run `npm run start:dev` to start your server in development mode.
 
-If you have trouble getting the server to run, reach out for assistance.
+<img src='https://i.imgur.com/DwCJ72P.png'>
 
-## Running tests
+<!-- DEMO -->
+<h2 id="demo"> :cloud: Demo</h2>
+
+Here is a live demo:  [...]
+
+<div>
+<img src='https://i.imgur.com/q6EeYKQ.gifg'>
+</div>
+
+<img src='https://i.imgur.com/DwCJ72P.png'>
+
+<!-- MOBILE SUPPORT -->
+<h2 id="mobile-support"> :iphone: Mobile Support</h2>
+
+<div align='center'>
+<img src='https://i.imgur.com/R2N2jUD.png'>
+</div>
+    
+<img src='https://i.imgur.com/DwCJ72P.png'>
+
+<!-- API DOCUMENTATION -->
+<h2 id="api-paths"> :newspaper: API Documentation</h2>
+
+The table displays the API endpoints and its use:
+
+| API Endpoint                                             | Description                                                                                                         
+| -------------------------------------------------------- | ---------------------------------------------------------------------------
+| `/reservations`                                          | GET: List all Reservations. POST: Create a new reservation                                      
+| `/reservations/:reservationId`                           | GET: Single reservation by ReservationId, PUT: Update a reservation by ReservationId 
+| `/reservations/:reservationId/status`                    | PUT: Update a reservation status as either "Booked", "Seated", "Finished", or "Canceled"
+| `/tables`                                                | GET: List all Tables, POST: Create a new table
+| `/tables/:tablesID`                                      | GET: List a single table
+| `/tables:tableId/seat`                                   | PUT: Updates a single table's status to "Occupied", Delete: Updates a single table's status to "Free"                
+    
+<img src='https://i.imgur.com/DwCJ72P.png'>
+
+<!-- RUNNING TESTS -->
+<h2 id="running-tests"> :grey_exclamation: Running Tests</h2>
 
 This project has unit, integration, and end-to-end (e2e) tests. You have seen unit and integration tests in previous projects.
 End-to-end tests use browser automation to interact with the application just like the user does.
@@ -146,13 +171,14 @@ The screenshots are saved in `front-end/.screenshots` and you can review them af
 
 You can use the screenshots to debug your code by rendering additional information on the screen.
 
-## Product Backlog
+<img src='https://i.imgur.com/DwCJ72P.png'>
 
-The Product Manager has already created the user stories for _Periodic Tables_. Each of the user stories is listed below, and your Product Manager wants them to be implemented in the order in which they are listed. Another developer has already written the tests for each of the user stories so that you don't have to.
 
-Although the user stories do not say anything about deployment, you should consider deploying early and often. You may even decide to deploy before adding any features. We recommend that you use [Heroku](https://devcenter.heroku.com/articles/deploying-nodejs) to deploy this project.
+<!-- USER STORIES -->
+<h2 id="user-stories"> :small_orange_diamond: User Stories</h2>
 
-### US-01 Create and list reservations
+<!-- US-01 -->
+<h3 id="us-01"> US-01 Create and list reservations</h3>
 
 As a restaurant manager<br/>
 I want to create a new reservation when a customer calls<br/>
@@ -219,8 +245,8 @@ module.exports = {
 	create: asyncErrorBoundary(create)
 }
 ```
-
-### US-02 Create reservation on a future, working date
+<!-- US-02 -->
+<h3 id="us-02"> US-02 Create reservation on a future, working date</h3>
 
 As a restaurant manager<br/>
 I only want to allow reservations to be created on a day when we are open<br/>
@@ -244,7 +270,8 @@ so that users do not accidentally create a reservation for days when we are clos
 >
 > While there is nothing preventing you from using a third party library to handle dates for your project, you are encouraged to use the built-in Date class.
 
-### US-03 Create reservation within eligible timeframe
+<!-- US-03 -->
+<h3 id="us-03"> US-03 Create reservation within eligible timeframe</h3>
 
 As a restaurant manager<br/>
 I only want to allow reservations to be created during business hours, up to 60 minutes before closing<br/>
@@ -260,7 +287,8 @@ so that users do not accidentally create a reservation for a time we cannot acco
 
 > **Hint** Parsing a Date that includes the time in JavaScript can be tricky. Again, keep an eye out for which time zone is being used for your Dates.
 
-### US-04 Seat reservation
+<!-- US-04 -->
+<h3 id="us-04"> US-04 Seat reservation</h3>
 
 As a restaurant manager, <br/>
 When a customer with an existing reservation arrives at the restaurant<br/>
@@ -306,7 +334,9 @@ so that I know which tables are occupied and free.
 
 > **Hint** Add a `reservation_id` column in the `tables` table. Use the `.references()` and `inTable()` knex functions to add the foreign key reference.
 
-### US-05 Finish an occupied table
+
+<!-- US-05 -->
+<h3 id="us-05"> US-05 Finish an occupied table</h3>
 
 As a restaurant manager<br/>
 I want to free up an occupied table when the guests leave<br/>
@@ -322,7 +352,8 @@ so that I can seat new guests at that table.<br/>
 
 > **Hint** The end-to-end test waits for the tables list to be refreshed before checking the free/occupied status of the table, so be sure to send a GET request to `/tables` to refresh the tables list.
 
-### US-06 Reservation Status
+<!-- US-06 -->
+<h3 id="us-06"> US-06 Reservation Status</h3>
 
 As a restaurant manager<br/>
 I want a reservation to have a status of either booked, seated, or finished<br/>
@@ -342,7 +373,8 @@ so that I can see which reservation parties are seated, and finished reservation
 
 > **Hint** Use [`Knex.transaction()`](http://knexjs.org/#Transactions) to make sure the `tables` and `reservations` records are always in sync with each other.
 
-### US-07 Search for a reservation by phone number
+<!-- US-07 -->
+<h3 id="us-07"> US-07 Search for a reservation by phone number</h3>
 
 As a restaurant manager<br/>
 I want to search for a reservation by phone number (partial or complete)<br/>
@@ -374,7 +406,8 @@ so that I can quickly access a customer's reservation when they call about their
 > }
 > ```
 
-### US-08 Change an existing reservation
+<!-- US-08 -->
+<h3 id="us-08"> US-08 Change an existing reservation</h3>
 
 As a restaurant manager<br/>
 I want to be able to modify a reservation if a customer calls to change or cancel their reservation<br/>
@@ -398,3 +431,10 @@ so that reservations are accurate and current.
    - Clicking "Cancel" makes no changes, then display the previous page.
 
 > **Hint** The same validation used for create applies to editing a reservation. The form and the API for updating a reservation must not allow the user to violate any of the rules specified when creating a reservation.
+
+<img src='https://i.imgur.com/DwCJ72P.png'>
+
+<!-- SOURCE -->
+<h2 id="source"> :scroll: Source</h2>
+
+Project's source code: <a href="https://github.com/Thinkful-Ed/starter-restaurant-reservation">https://github.com/Thinkful-Ed/starter-restaurant-reservation</a>
