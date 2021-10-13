@@ -84,7 +84,7 @@ The following tech stack was used in this project:
 <!-- DEMO -->
 <h2 id="demo"> :cloud: Demo</h2>
 
-Here is a live demo:  [...]
+Here is a live demo: <a href="https://capstone-rest.herokuapp.com/dashboard">https://capstone-rest.herokuapp.com/dashboard</a>
 
 <div>
 <img src='https://i.imgur.com/q6EeYKQ.gifg'>
